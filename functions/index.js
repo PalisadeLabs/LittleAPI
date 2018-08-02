@@ -1,6 +1,5 @@
 const functions = require('firebase-functions');
 const https = require('https');
-const bodyParser = require('body-parser');
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -11,25 +10,69 @@ const bodyParser = require('body-parser');
 exports.helloWorld = functions.https.onRequest((request, response) => {
 
 	https.get(request.query.name, (resp) => {
-	  let data = '';
-	 
-	  // A chunk of data has been recieved.
-	  resp.on('data', (chunk) => {
-	    data += chunk;
-	  });
-	 
-	  // The whole response has been received. Print out the result.
-	  resp.on('end', () => {
+	  
+	 fetchData(resp, (data) => {
 
-	  	var parsedData = JSON.parse(data);
+	 	routeAction(request, response, data)
+	 })
 
-	    response.send(parsedData[request.query.key]);
-	  });
-	 
 	}).on("error", (err) => {
 	  console.log("Error: " + err.message);
 	});
-
- 	
-
 });
+
+const fetchData = (resp, callback) => {
+	let data = '';
+	 
+	resp.on('data', (chunk) => {
+		data += chunk;
+	});
+
+	resp.on('end', () => {
+		callback(JSON.parse(data))
+	});
+}
+
+const routeAction = (request, response, data) => {
+
+	if (request.query.key) {
+		fetchKey(response, data, request.query.key);
+
+	} else if ( request.query.filter ) {
+		filterData(response, data, request.query.filterkey, request.query.condition, request.query.value);
+	} else {
+		response.send(data);
+	}
+}
+
+const fetchKey = (response, data, key) => {
+	response.send(JSON.stringify(data[key]));
+}
+
+const filterData = (response, data, key, condition, value) => {
+
+	var filtered = [];
+
+	for (var element in data) {
+
+	  
+	  if (condition == 'greater') {
+
+			if (parseInt(data[element][key]) > parseInt(value)) {
+
+				console.log(parseInt(data[element][key]));
+				filtered.push( {[element]: data[element]} )
+			}
+
+	  } else if (condition == 'less') {
+
+	  		if (parseInt(data[element][key]) < parseInt(value)) {
+				filtered.push({[element]: data[element]})
+			}
+	  }
+	  
+	}
+
+	response.send(filtered)
+}
+
