@@ -1,0 +1,34 @@
+[debug] [2018-08-02T20:38:50.715Z] ----------------------------------------------------------------------
+[debug] [2018-08-02T20:38:50.717Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-08-02T20:38:50.717Z] CLI Version:   3.15.4
+[debug] [2018-08-02T20:38:50.717Z] Platform:      darwin
+[debug] [2018-08-02T20:38:50.717Z] Node Version:  v9.10.1
+[debug] [2018-08-02T20:38:50.718Z] Time:          Thu Aug 02 2018 16:38:50 GMT-0400 (EDT)
+[debug] [2018-08-02T20:38:50.718Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-08-02T20:38:50.729Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-08-02T20:38:50.729Z] > authorizing via signed-in user
+[debug] [2018-08-02T20:38:50.730Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/little-api  
+ Thu Aug 02 2018 16:38:50 GMT-0400 (EDT)
+[debug] [2018-08-02T20:38:51.013Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-02T20:38:51.014Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/little-api/tokens  
+ Thu Aug 02 2018 16:38:51 GMT-0400 (EDT)
+[debug] [2018-08-02T20:38:51.313Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/dylan/Documents/LittleAPI'...
+[info] 
+[debug] [2018-08-02T20:38:51.317Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/little-api  
+ Thu Aug 02 2018 16:38:51 GMT-0400 (EDT)
+[debug] [2018-08-02T20:38:51.565Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-02T20:38:51.566Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/449345375783/clients/_:getWebAppConfig  
+ Thu Aug 02 2018 16:38:51 GMT-0400 (EDT)
+[debug] [2018-08-02T20:38:52.103Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-02T20:38:52.121Z] TypeError: Cannot read property 'public' of undefined
+    at Server.<anonymous> (/usr/local/lib/node_modules/firebase-tools/lib/serve/hosting.js:34:18)
+    at Object.onceWrapper (events.js:272:13)
+    at Server.emit (events.js:180:13)
+    at Server.emit (domain.js:421:20)
+    at emitListeningNT (net.js:1372:10)
+    at process._tickCallback (internal/process/next_tick.js:114:19)
+[error] 
+[error] Error: An unexpected error has occurred.

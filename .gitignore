@@ -1,0 +1,8 @@
+# Dev Directories
+functions/node_modules
+
+# Outputs
+*.pyc
+*.app
+.DS_Store
+
