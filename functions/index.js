@@ -7,6 +7,19 @@ const https = require('https');
 
 // URL in form of: littleapi.com/<ApiName>/<QueryData if any>/<filters>
 
+exports.ParsePath = functions.https.onRequest((request, response) => {
+
+	var splitPath = request.originalUrl.split("/");
+
+	// https.get(request.originalUrl, (resp) => {
+	// 	fetchDataAsString(resp, (data) => {
+	// 		response.send(data);
+	// 	})
+	// })
+
+	response.send(splitPath[1]);
+})
+
 exports.helloWorld = functions.https.onRequest((request, response) => {
 
 	https.get(request.query.name, (resp) => {
@@ -20,6 +33,18 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 	  console.log("Error: " + err.message);
 	});
 });
+
+const fetchDataAsString = (resp, callback) => {
+	let data = '';
+	 
+	resp.on('data', (chunk) => {
+		data += chunk;
+	});
+
+	resp.on('end', () => {
+		callback(data)
+	});
+}
 
 const fetchData = (resp, callback) => {
 	let data = '';
