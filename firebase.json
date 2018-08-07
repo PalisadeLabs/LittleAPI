@@ -7,7 +7,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "hosting/website/build/test-site",
+    "public": "hosting/website/build/littleapi",
     "ignore": [
       "firebase.json",
       "**/.*",
