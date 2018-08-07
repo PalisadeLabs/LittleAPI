@@ -7,6 +7,54 @@ const https = require('https');
 
 // URL in form of: littleapi.com/<ApiName>/<QueryData if any>/<filters>
 
+exports.ParsePath = functions.https.onRequest((request, response) => {
+
+	var splitPath = request.originalUrl.split("/");
+
+	// https.get(request.originalUrl, (resp) => {
+	// 	fetchDataAsString(resp, (data) => {
+	// 		response.send(data);
+	// 	})
+	// })
+
+	response.send(splitPath[1]);
+})
+
+exports.Collection = functions.https.onRequest((request, response) => {
+
+	var splitPath = request.originalUrl.split("/");
+
+	console.log(splitPath);
+
+	var Type = splitPath[1];
+
+	if(Type == "Weather")
+	{
+		var APIKey = splitPath[2]
+		var LatitudeLongitude = splitPath[3]
+
+		https.get("https://api.darksky.net/forecast/" + APIKey + "/" + LatitudeLongitude, (resp) => {
+			fetchData(resp, (data) => {
+
+				var i;
+
+				console.log("Spit Path Size: " + splitPath.length)
+
+				for(i = 4; i < splitPath.length-1; i++)
+				{
+					data = data[splitPath[i]];
+				}
+
+				response.send(JSON.stringify(data));
+			})
+		})
+	}
+	else
+	{
+		response.send(`{ "Error" : "Unrecognized Category" }` );
+	}
+})
+
 exports.helloWorld = functions.https.onRequest((request, response) => {
 
 	https.get(request.query.name, (resp) => {
@@ -20,6 +68,18 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 	  console.log("Error: " + err.message);
 	});
 });
+
+const fetchDataAsString = (resp, callback) => {
+	let data = '';
+	 
+	resp.on('data', (chunk) => {
+		data += chunk;
+	});
+
+	resp.on('end', () => {
+		callback(data)
+	});
+}
 
 const fetchData = (resp, callback) => {
 	let data = '';
