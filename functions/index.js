@@ -24,6 +24,8 @@ exports.Collection = functions.https.onRequest((request, response) => {
 
 	var splitPath = request.originalUrl.split("/");
 
+	console.log(splitPath);
+
 	var Type = splitPath[1];
 
 	if(Type == "Weather")
@@ -32,8 +34,18 @@ exports.Collection = functions.https.onRequest((request, response) => {
 		var LatitudeLongitude = splitPath[3]
 
 		https.get("https://api.darksky.net/forecast/" + APIKey + "/" + LatitudeLongitude, (resp) => {
-			fetchDataAsString(resp, (data) => {
-				response.send(data);
+			fetchData(resp, (data) => {
+
+				var i;
+
+				console.log("Spit Path Size: " + splitPath.length)
+
+				for(i = 4; i < splitPath.length-1; i++)
+				{
+					data = data[splitPath[i]];
+				}
+
+				response.send(JSON.stringify(data));
 			})
 		})
 	}
