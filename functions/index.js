@@ -82,10 +82,10 @@ const fetchData = (resp, callback) => {
 
 const routeAction = (request, response, data) => {
 
-	if (request.query.key) {
-		console.log("Routing Path: " + request.query.key);
+	if (request.query.route) {
+		console.log("Routing Path: " + request.query.route);
 
-		fetchKey(response, data, request.query.key);
+		fetchKey(response, data, request.query.route);
 
 	} else if ( request.query.filter ) {
 		filterData(response, data, request.query.filterkey, request.query.condition, request.query.value);
