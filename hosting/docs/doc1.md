@@ -12,7 +12,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum 
 
 ## Mauris In Code
 
-```js
+```
 ReactDOM.render(<h1>Hello, world!</h1>, document.getElementById('root'));
 ```
 
