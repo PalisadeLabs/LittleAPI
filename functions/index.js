@@ -20,6 +20,29 @@ exports.ParsePath = functions.https.onRequest((request, response) => {
 	response.send(splitPath[1]);
 })
 
+exports.Collection = functions.https.onRequest((request, response) => {
+
+	var splitPath = request.originalUrl.split("/");
+
+	var Type = splitPath[1];
+
+	if(Type == "Weather")
+	{
+		var APIKey = splitPath[2]
+		var LatitudeLongitude = splitPath[3]
+
+		https.get("https://api.darksky.net/forecast/" + APIKey + "/" + LatitudeLongitude, (resp) => {
+			fetchDataAsString(resp, (data) => {
+				response.send(data);
+			})
+		})
+	}
+	else
+	{
+		response.send(`{ "Error" : "Unrecognized Category" }` );
+	}
+})
+
 exports.helloWorld = functions.https.onRequest((request, response) => {
 
 	https.get(request.query.name, (resp) => {
