@@ -83,6 +83,8 @@ const fetchData = (resp, callback) => {
 const routeAction = (request, response, data) => {
 
 	if (request.query.key) {
+		console.log("Routing Path: " + request.query.key);
+
 		fetchKey(response, data, request.query.key);
 
 	} else if ( request.query.filter ) {
@@ -93,7 +95,17 @@ const routeAction = (request, response, data) => {
 }
 
 const fetchKey = (response, data, key) => {
-	response.send(JSON.stringify(data[key]));
+
+	var i;
+
+	var splitPath = key.split("/");
+
+	for(i = 0; i < splitPath.length-1; i++)
+	{
+		data = data[splitPath[i]];
+	}
+
+	response.send(JSON.stringify(data));
 }
 
 const filterData = (response, data, key, condition, value) => {
