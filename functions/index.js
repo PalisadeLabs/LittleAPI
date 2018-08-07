@@ -7,20 +7,7 @@ const https = require('https');
 
 // URL in form of: littleapi.com/<ApiName>/<QueryData if any>/<filters>
 
-exports.ParsePath = functions.https.onRequest((request, response) => {
-
-	var splitPath = request.originalUrl.split("/");
-
-	// https.get(request.originalUrl, (resp) => {
-	// 	fetchDataAsString(resp, (data) => {
-	// 		response.send(data);
-	// 	})
-	// })
-
-	response.send(splitPath[1]);
-})
-
-exports.Collection = functions.https.onRequest((request, response) => {
+exports.CollectionQuery = functions.https.onRequest((request, response) => {
 
 	var splitPath = request.originalUrl.split("/");
 
@@ -55,7 +42,7 @@ exports.Collection = functions.https.onRequest((request, response) => {
 	}
 })
 
-exports.helloWorld = functions.https.onRequest((request, response) => {
+exports.CustomQuery = functions.https.onRequest((request, response) => {
 
 	https.get(request.query.name, (resp) => {
 	  
