@@ -94,18 +94,68 @@ const routeAction = (request, response, data) => {
 	}
 }
 
-const fetchKey = (response, data, key) => {
+const parseJSONData = (data, splitPath, curIndex, callback) => {
+	
+	//if(curIndex < splitPath.length - 1)
+	//{
+	//	if(splitPath[curIndex] == "*")
+	//	{
+//
+	//	}
+	//	else
+	//	{
+	//		console.log("Current Index: " + curIndex);
+//
+	//		data = data[splitPath[curIndex]];
+//
+	//		curIndex++;
+	//		parseJSONData(data, splitPath, curIndex, callback)
+	//	}
+	//}
 
-	var i;
-
-	var splitPath = key.split("/");
-
-	for(i = 0; i < splitPath.length-1; i++)
+	for(curIndex; curIndex < splitPath.length-1; curIndex++)
 	{
-		data = data[splitPath[i]];
+		if(splitPath[curIndex] == "*")
+		{
+
+		}
+		else
+		{
+			data = data[splitPath[curIndex]];
+		}
 	}
 
-	response.send(JSON.stringify(data));
+	callback(data)
+	
+}
+
+const fetchKey = (response, data, key) => {
+
+	var splitPath = key.split("/");
+	
+	var i = 0;
+	parseJSONData(data, splitPath, i, (data) => {
+		response.send(JSON.stringify(data));
+	});
+
+	
+	//for(i = 0; i < splitPath.length-1; i++)
+	//{
+	//	if(splitPath[i] == "*")
+	//	{
+	//		keyArr = Object.keys(data);
+	//		console.log("Executing wildcard. Data Length = " + keyArr.length);
+	//		var j;
+	//		for(j = 0; j < keyArr.length; j++)
+	//		{
+	//			console.log(keyArr[j]);
+	//		}
+	//	}
+	//	else
+	//	{
+	//		data = data[splitPath[i]];
+	//	}
+	//}
 }
 
 const filterData = (response, data, key, condition, value) => {
