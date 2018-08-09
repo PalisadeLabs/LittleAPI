@@ -122,8 +122,19 @@ const FeatureCallout = props => (
   <div
     className="productShowcaseSection paddingBottom"
     style={{textAlign: 'center'}}>
-    <h2>Feature Callout</h2>
-    <MarkdownBlock>These are features of this project</MarkdownBlock>
+    <h2>Say Hi to Little API</h2>
+    <MarkdownBlock>
+                  Little API is a tool that acts as middleman filter for API requests. It lets 
+                  you ask for the data you care about and nothing more. 
+    </MarkdownBlock>
+    <MarkdownBlock>
+                  The concept for this project was borne from the development of Google's 
+                  Paper Signals. We realized that many APIs deliver much more than you care about, 
+                  and sometimes literally more than you can care about when working with embedded 
+                  systems and Arduino. We decided that some tool needs to exist that lets users
+                  ask for what they care about directly in a URL so that no special libraries 
+                  are required for any development so that life can remain as simple as possible.
+    </MarkdownBlock>
   </div>
 );
 
@@ -131,7 +142,7 @@ const LearnHow = props => (
   <Block background="light">
     {[
       {
-        content: 'Talk about learning how to use this',
+        content: 'Little API is very simple. Checkout the docs tab above.',
         image: imgUrl('docusaurus.svg'),
         imageAlign: 'right',
         title: 'Learn How',
@@ -204,12 +215,7 @@ class Index extends React.Component {
       <div>
         <HomeSplash language={language} />
         <div className="mainContainer">
-          <Features />
           <FeatureCallout />
-          <LearnHow />
-          <TryOut />
-          <Description />
-          <Showcase language={language} />
         </div>
       </div>
     );
