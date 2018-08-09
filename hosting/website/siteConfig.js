@@ -39,8 +39,7 @@ const siteConfig = {
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     {doc: 'GettingStarted', label: 'Docs'},
-    {doc: 'doc4', label: 'Tutorials'},
-    {page: 'help', label: 'Community'},
+    {href: 'https://github.com/dfashbaugh/Little_API/issues', label: 'Community'},
     {blog: true, label: 'Blog'},
   ],
 
