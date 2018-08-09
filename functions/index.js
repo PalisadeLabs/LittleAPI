@@ -7,20 +7,7 @@ const https = require('https');
 
 // URL in form of: littleapi.com/<ApiName>/<QueryData if any>/<filters>
 
-exports.ParsePath = functions.https.onRequest((request, response) => {
-
-	var splitPath = request.originalUrl.split("/");
-
-	// https.get(request.originalUrl, (resp) => {
-	// 	fetchDataAsString(resp, (data) => {
-	// 		response.send(data);
-	// 	})
-	// })
-
-	response.send(splitPath[1]);
-})
-
-exports.Collection = functions.https.onRequest((request, response) => {
+exports.CollectionQuery = functions.https.onRequest((request, response) => {
 
 	var splitPath = request.originalUrl.split("/");
 
@@ -55,7 +42,7 @@ exports.Collection = functions.https.onRequest((request, response) => {
 	}
 })
 
-exports.helloWorld = functions.https.onRequest((request, response) => {
+exports.CustomQuery = functions.https.onRequest((request, response) => {
 
 	https.get(request.query.name, (resp) => {
 	  
@@ -95,8 +82,10 @@ const fetchData = (resp, callback) => {
 
 const routeAction = (request, response, data) => {
 
-	if (request.query.key) {
-		fetchKey(response, data, request.query.key);
+	if (request.query.route) {
+		console.log("Routing Path: " + request.query.route);
+
+		fetchKey(response, data, request.query.route);
 
 	} else if ( request.query.filter ) {
 		filterData(response, data, request.query.filterkey, request.query.condition, request.query.value);
@@ -105,8 +94,100 @@ const routeAction = (request, response, data) => {
 	}
 }
 
+const parseJSONData = (data, splitPath, curIndex, callback) => {
+	
+	//if(curIndex < splitPath.length - 1)
+	//{
+	//	if(splitPath[curIndex] == "*")
+	//	{
+//
+	//	}
+	//	else
+	//	{
+	//		console.log("Current Index: " + curIndex);
+//
+	//		data = data[splitPath[curIndex]];
+//
+	//		curIndex++;
+	//		parseJSONData(data, splitPath, curIndex, callback)
+	//	}
+	//}
+
+	var useCallback = true;
+	for(curIndex; curIndex < splitPath.length-1; curIndex++)
+	{
+		console.log(curIndex);
+
+		if(splitPath[curIndex] == "*")
+		{
+			useCallback = false;
+			// keyArr = Object.keys(data);
+			// curIndex++;
+			// parseJSONData(data, splitPath, curIndex, (data) =>{
+				
+			// 	console.log(data);
+
+			// 	callback(data);
+			// })
+
+			// break;
+
+			var result = Object.keys(data).map(key => {
+				return {
+					[key]: {
+						[splitPath[curIndex + 1]]: data[key][splitPath[curIndex + 1]]
+						}
+					}
+				}
+			);
+
+			var resultObject = {};
+
+			result.map(item => {
+				resultObject[Object.keys(item)[0]] = item[Object.keys(item)[0]]
+			})
+
+			callback(resultObject);
+			break;
+		}
+		else
+		{
+			data = data[splitPath[curIndex]];
+		}
+	}
+
+	if(useCallback)
+	{
+		callback(data);
+	}
+}
+
 const fetchKey = (response, data, key) => {
-	response.send(JSON.stringify(data[key]));
+
+	var splitPath = key.split("/");
+	
+	var i = 0;
+	parseJSONData(data, splitPath, i, (data) => {
+		response.send(JSON.stringify(data));
+	});
+	
+	//for(i = 0; i < splitPath.length-1; i++)
+	//{
+	//	if(splitPath[i] == "*")
+	//	{
+	//		keyArr = Object.keys(data);
+	//		console.log("Executing wildcard. Data Length = " + keyArr.length);
+	//		var j;
+	//		for(j = 0; j < keyArr.length; j++)
+	//		{
+	//			console.log(keyArr[j]);
+	//		}
+	//	}
+	//	else
+	//	{
+	//		data = data[splitPath[i]];
+	//	}
+	//}
 }
 
 const filterData = (response, data, key, condition, value) => {
