@@ -14,7 +14,7 @@ const users = [
     caption: 'User1',
     // You will need to prepend the image path with your baseUrl
     // if it is not '/', like: '/test-site/img/docusaurus.svg'.
-    image: '/img/docusaurus.svg',
+    image: '/img/pika.png',
     infoLink: 'https://www.facebook.com',
     pinned: true,
   },
@@ -46,9 +46,9 @@ const siteConfig = {
   // If you have users set above, you add it here:
   users,
   /* path to images for header/footer */
-  headerIcon: 'img/docusaurus.svg',
-  footerIcon: 'img/docusaurus.svg',
-  favicon: 'img/favicon.png',
+  headerIcon: 'img/pika.png',
+  footerIcon: 'img/pika.png',
+  favicon: 'img/pika.png',
 
   /* colors for website */
   colors: {
@@ -86,8 +86,8 @@ const siteConfig = {
   onPageNav: 'separate',
 
   /* Open Graph and Twitter card images */
-  ogImage: 'img/docusaurus.png',
-  twitterImage: 'img/docusaurus.png',
+  ogImage: 'img/pika.png',
+  twitterImage: 'img/pika.png',
   // usePrism: true
 
   // You may provide arbitrary config keys to be used as needed by your
