@@ -80,8 +80,8 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <ProjectTitle />
           <PromoSection>
-            <Button href={docUrl('doc1.html', language)}>Example Link</Button>
-            <Button href={docUrl('doc2.html', language)}>Example Link 2</Button>
+            <Button href="https://api.bitcoincharts.com/v1/weighted_prices.json">Default API Call</Button>
+            <Button href="https://us-central1-little-api.cloudfunctions.net/CustomQuery?name=https://api.bitcoincharts.com/v1/weighted_prices.json&route=USD/">Little API Filtered for USD</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -131,8 +131,8 @@ const FeatureCallout = props => (
                   Paper Signals. We realized that many APIs deliver much more than you care about, 
                   and sometimes literally more than you can care about when working with embedded 
                   systems and Arduino. We decided that some tool needs to exist that lets users
-                  ask for what they care about directly in a URL so that no special libraries 
-                  are required for any development so that life can remain as simple as possible.
+                  ask for what they want directly in a URL so that no special libraries 
+                  are required for any development and life can remain as simple as possible.
     </MarkdownBlock>
   </div>
 );
