@@ -113,11 +113,42 @@ const parseJSONData = (data, splitPath, curIndex, callback) => {
 	//	}
 	//}
 
+	var useCallback = true;
 	for(curIndex; curIndex < splitPath.length-1; curIndex++)
 	{
+		console.log(curIndex);
+
 		if(splitPath[curIndex] == "*")
 		{
+			useCallback = false;
+			// keyArr = Object.keys(data);
+			// curIndex++;
+			// parseJSONData(data, splitPath, curIndex, (data) =>{
+				
+			// 	console.log(data);
 
+			// 	callback(data);
+			// })
+
+			// break;
+
+			var result = Object.keys(data).map(key => {
+				return {
+					[key]: {
+						[splitPath[curIndex + 1]]: data[key][splitPath[curIndex + 1]]
+						}
+					}
+				}
+			);
+
+			var resultObject = {};
+
+			result.map(item => {
+				resultObject[Object.keys(item)[0]] = item[Object.keys(item)[0]]
+			})
+
+			callback(resultObject);
+			break;
 		}
 		else
 		{
@@ -125,8 +156,10 @@ const parseJSONData = (data, splitPath, curIndex, callback) => {
 		}
 	}
 
-	callback(data)
-	
+	if(useCallback)
+	{
+		callback(data);
+	}
 }
 
 const fetchKey = (response, data, key) => {
@@ -137,7 +170,6 @@ const fetchKey = (response, data, key) => {
 	parseJSONData(data, splitPath, i, (data) => {
 		response.send(JSON.stringify(data));
 	});
-
 	
 	//for(i = 0; i < splitPath.length-1; i++)
 	//{
