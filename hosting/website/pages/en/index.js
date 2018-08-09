@@ -80,7 +80,6 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <ProjectTitle />
           <PromoSection>
-            <Button href="#try">Try It Out</Button>
             <Button href={docUrl('doc1.html', language)}>Example Link</Button>
             <Button href={docUrl('doc2.html', language)}>Example Link 2</Button>
           </PromoSection>
@@ -128,7 +127,7 @@ const FeatureCallout = props => (
                   you ask for the data you care about and nothing more. 
     </MarkdownBlock>
     <MarkdownBlock>
-                  The concept for this project was borne from the development of Google's 
+                  The concept for this project was born from the development of Google's 
                   Paper Signals. We realized that many APIs deliver much more than you care about, 
                   and sometimes literally more than you can care about when working with embedded 
                   systems and Arduino. We decided that some tool needs to exist that lets users
@@ -214,9 +213,7 @@ class Index extends React.Component {
     return (
       <div>
         <HomeSplash language={language} />
-        <div className="mainContainer">
-          <FeatureCallout />
-        </div>
+        <FeatureCallout />
       </div>
     );
   }
