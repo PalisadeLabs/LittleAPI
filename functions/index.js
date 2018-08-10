@@ -44,8 +44,8 @@ exports.CollectionQuery = functions.https.onRequest((request, response) => {
 
 exports.CustomQuery = functions.https.onRequest((request, response) => {
 
-	https.get(request.query.name, (resp) => {
-	  
+	https.get(request.query.url, (resp) => {
+
 	 fetchData(resp, (data) => {
 
 	 	routeAction(request, response, data)
@@ -58,7 +58,7 @@ exports.CustomQuery = functions.https.onRequest((request, response) => {
 
 const fetchDataAsString = (resp, callback) => {
 	let data = '';
-	 
+
 	resp.on('data', (chunk) => {
 		data += chunk;
 	});
@@ -70,7 +70,7 @@ const fetchDataAsString = (resp, callback) => {
 
 const fetchData = (resp, callback) => {
 	let data = '';
-	 
+
 	resp.on('data', (chunk) => {
 		data += chunk;
 	});
@@ -95,7 +95,7 @@ const routeAction = (request, response, data) => {
 }
 
 const parseJSONData = (data, splitPath, curIndex, callback) => {
-	
+
 	//if(curIndex < splitPath.length - 1)
 	//{
 	//	if(splitPath[curIndex] == "*")
@@ -124,7 +124,7 @@ const parseJSONData = (data, splitPath, curIndex, callback) => {
 			// keyArr = Object.keys(data);
 			// curIndex++;
 			// parseJSONData(data, splitPath, curIndex, (data) =>{
-				
+
 			// 	console.log(data);
 
 			// 	callback(data);
@@ -165,12 +165,12 @@ const parseJSONData = (data, splitPath, curIndex, callback) => {
 const fetchKey = (response, data, key) => {
 
 	var splitPath = key.split("/");
-	
+
 	var i = 0;
 	parseJSONData(data, splitPath, i, (data) => {
 		response.send(JSON.stringify(data));
 	});
-	
+
 	//for(i = 0; i < splitPath.length-1; i++)
 	//{
 	//	if(splitPath[i] == "*")
@@ -196,7 +196,7 @@ const filterData = (response, data, key, condition, value) => {
 
 	for (var element in data) {
 
-	  
+
 	  if (condition == 'greater') {
 
 			if (parseInt(data[element][key]) > parseInt(value)) {
@@ -211,9 +211,8 @@ const filterData = (response, data, key, condition, value) => {
 				filtered.push({[element]: data[element]})
 			}
 	  }
-	  
+
 	}
 
 	response.send(filtered)
 }
-
