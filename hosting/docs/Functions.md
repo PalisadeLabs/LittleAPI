@@ -32,14 +32,14 @@ You only care about seeing the value in USD over 24 hours, so you'll either need
 
 You can pass this API straight to Little API by writing a URL that looks like this:
 ```
-https://us-central1-little-api.cloudfunctions.net/CustomQuery?name=https://api.bitcoincharts.com/v1/weighted_prices.json
+https://us-central1-little-api.cloudfunctions.net/CustomQuery?url=https://api.bitcoincharts.com/v1/weighted_prices.json
 ```
 
 This isn't very useful. So lets leverage little API by having it return only the data we care about.
 
 To do this, we just add the route key to our URL and route through the JSON hierarchy.
 ```
-https://us-central1-little-api.cloudfunctions.net/CustomQuery?name=https://api.bitcoincharts.com/v1/weighted_prices.json&route=USD/24h/
+https://us-central1-little-api.cloudfunctions.net/CustomQuery?url=https://api.bitcoincharts.com/v1/weighted_prices.json&route=USD/24h/
 ```
 
 Now that we have only the data we care about, our Arduino is empowered because it no longer needs to locally contain ArduinoJSON or any other local parsing. It simply receives a value, and then operates on it immediately.

@@ -4,7 +4,7 @@ title: Getting Started
 sidebar_label: Hello World
 ---
 
-Working with APIs can be a headache. Integrations, usability, data structure, richness of querying, and data volume are all highly variable, and can sometimes get in the way of building your product, service, or simple project. In the worst cases, API responses can actually crash your computer or device by causing memory overflows. This is why we decided to build LittleAPI - to enable easier access to rich and variable data. 
+Working with APIs can be a headache. Integrations, usability, data structure, richness of querying, and data volume are all highly variable, and can sometimes get in the way of building your product, service, or simple project. In the worst cases, API responses can actually crash your computer or device by causing memory overflows. This is why we decided to build LittleAPI - to enable easier access to rich and variable data.
 
 ## Try LittleAPI
 
@@ -1737,21 +1737,21 @@ With the standard response:
 }
 ```
 
-As you can see, the data response is absolutely enormous. In fact, on some memory constrained devices, such as Arduinos, this volume of data (nearly 50,000 characters) would almost certainly crash the device. Your standard Arduino Uno has only 2.0kb of RAM, so it would crash 25 times over just from this single API call! Even an ESP8266, which is an absolutely powerhouse in the IoT world with 80kb of RAM, would crash if it attempted to store two of these calls. 
+As you can see, the data response is absolutely enormous. In fact, on some memory constrained devices, such as Arduinos, this volume of data (nearly 50,000 characters) would almost certainly crash the device. Your standard Arduino Uno has only 2.0kb of RAM, so it would crash 25 times over just from this single API call! Even an ESP8266, which is an absolutely powerhouse in the IoT world with 80kb of RAM, would crash if it attempted to store two of these calls.
 
-~~Sometimes~~ Often, less is more. 
+~~Sometimes~~ Often, less is more.
 
 ---
 
 ## Request a subset of an API response
 
-Now let's use LittleAPI to make this response a bit more digestible. 
+Now let's use LittleAPI to make this response a bit more digestible.
 
 ```
-https://littleapi.com/CustomQuery?name=https://api.darksky.net/forecast/[APIKEY]/42.3601,-71.05&route=currently/
+https://littleapi.com/CustomQuery?url=https://api.darksky.net/forecast/[APIKEY]/42.3601,-71.05&route=currently/
 ```
 
-Now the response looks like this: 
+Now the response looks like this:
 
 ```
 {
@@ -1779,16 +1779,15 @@ Now the response looks like this:
 
 Much better!
 
-Can we request even more specific data? 
+Can we request even more specific data?
 
 ```
-https://littleapi.com/CustomQuery?name=https://api.darksky.net/forecast/[APIKEY]/42.3601,-71.05&route=currently/windSpeed/
+https://littleapi.com/CustomQuery?url=https://api.darksky.net/forecast/[APIKEY]/42.3601,-71.05&route=currently/windSpeed/
 ```
-Now all that is returned is: 
+Now all that is returned is:
 
 ```text
 5.84
 ```
 
 It has never been easier to offload your data management!
-
