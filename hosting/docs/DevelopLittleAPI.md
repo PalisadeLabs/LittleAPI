@@ -4,7 +4,14 @@ title: Develop For Little API
 sidebar_label: Develop Little API
 ---
 
-Working with APIs can be a headache. Integrations, usability, data structure, richness of querying, and data volume are all highly variable, and can sometimes get in the way of building your product, service, or simple project. In the worst cases, API responses can actually crash your computer or device by causing memory overflows. This is why we decided to build LittleAPI - to enable easier access to rich and variable data. 
+Little API welcomes all developers to help improve the system. We are all about open source and know that this project can grow to be important for any of us doing Edge IOT projects and data collection projects!
 
-## Try LittleAPI
+## Write Code
 
+Clone the code from the Little API Github Repo: https://github.com/dfashbaugh/Little_API
+
+Make sure to fork the repository when you start working so that you can submit Pull Requests to the main repo.
+
+## Reporting Issues
+
+Little API uses Github Issues to communicate problems and discuss features. Make sure to fill out an issue to get a developer's attention!
