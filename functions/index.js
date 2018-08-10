@@ -1,12 +1,6 @@
 const functions = require('firebase-functions');
 const https = require('https');
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-
-// URL in form of: littleapi.com/<ApiName>/<QueryData if any>/<filters>
-
 exports.CollectionQuery = functions.https.onRequest((request, response) => {
 
 	var splitPath = request.originalUrl.split("/");
@@ -96,23 +90,6 @@ const routeAction = (request, response, data) => {
 
 const parseJSONData = (data, splitPath, curIndex, callback) => {
 
-	//if(curIndex < splitPath.length - 1)
-	//{
-	//	if(splitPath[curIndex] == "*")
-	//	{
-//
-	//	}
-	//	else
-	//	{
-	//		console.log("Current Index: " + curIndex);
-//
-	//		data = data[splitPath[curIndex]];
-//
-	//		curIndex++;
-	//		parseJSONData(data, splitPath, curIndex, callback)
-	//	}
-	//}
-
 	var useCallback = true;
 	for(curIndex; curIndex < splitPath.length-1; curIndex++)
 	{
@@ -121,16 +98,6 @@ const parseJSONData = (data, splitPath, curIndex, callback) => {
 		if(splitPath[curIndex] == "*")
 		{
 			useCallback = false;
-			// keyArr = Object.keys(data);
-			// curIndex++;
-			// parseJSONData(data, splitPath, curIndex, (data) =>{
-
-			// 	console.log(data);
-
-			// 	callback(data);
-			// })
-
-			// break;
 
 			var result = Object.keys(data).map(key => {
 				return {
@@ -170,24 +137,6 @@ const fetchKey = (response, data, key) => {
 	parseJSONData(data, splitPath, i, (data) => {
 		response.send(JSON.stringify(data));
 	});
-
-	//for(i = 0; i < splitPath.length-1; i++)
-	//{
-	//	if(splitPath[i] == "*")
-	//	{
-	//		keyArr = Object.keys(data);
-	//		console.log("Executing wildcard. Data Length = " + keyArr.length);
-	//		var j;
-	//		for(j = 0; j < keyArr.length; j++)
-	//		{
-	//			console.log(keyArr[j]);
-	//		}
-	//	}
-	//	else
-	//	{
-	//		data = data[splitPath[i]];
-	//	}
-	//}
 }
 
 const filterData = (response, data, key, condition, value) => {
