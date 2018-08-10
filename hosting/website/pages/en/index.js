@@ -76,13 +76,12 @@ class HomeSplash extends React.Component {
     let language = this.props.language || '';
     return (
       <SplashContainer>
-        <Logo img_src={imgUrl('docusaurus.svg')} />
+        <Logo img_src={imgUrl('pika.png')} />
         <div className="inner">
           <ProjectTitle />
           <PromoSection>
-            <Button href="#try">Try It Out</Button>
-            <Button href={docUrl('doc1.html', language)}>Example Link</Button>
-            <Button href={docUrl('doc2.html', language)}>Example Link 2</Button>
+            <Button href="https://api.bitcoincharts.com/v1/weighted_prices.json">Default API Call</Button>
+            <Button href="https://us-central1-little-api.cloudfunctions.net/CustomQuery?name=https://api.bitcoincharts.com/v1/weighted_prices.json&route=USD/">Little API Filtered for USD</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -122,8 +121,19 @@ const FeatureCallout = props => (
   <div
     className="productShowcaseSection paddingBottom"
     style={{textAlign: 'center'}}>
-    <h2>Feature Callout</h2>
-    <MarkdownBlock>These are features of this project</MarkdownBlock>
+    <h2>Say Hi to Little API</h2>
+    <MarkdownBlock>
+                  Little API is a tool that acts as middleman filter for API requests. It lets 
+                  you ask for the data you care about and nothing more. 
+    </MarkdownBlock>
+    <MarkdownBlock>
+                  The concept for this project was born from the development of Google's 
+                  Paper Signals. We realized that many APIs deliver much more than you care about, 
+                  and sometimes literally more than you can care about when working with embedded 
+                  systems and Arduino. We decided that some tool needs to exist that lets users
+                  ask for what they want directly in a URL so that no special libraries 
+                  are required for any development and life can remain as simple as possible.
+    </MarkdownBlock>
   </div>
 );
 
@@ -131,7 +141,7 @@ const LearnHow = props => (
   <Block background="light">
     {[
       {
-        content: 'Talk about learning how to use this',
+        content: 'Little API is very simple. Checkout the docs tab above.',
         image: imgUrl('docusaurus.svg'),
         imageAlign: 'right',
         title: 'Learn How',
@@ -203,14 +213,7 @@ class Index extends React.Component {
     return (
       <div>
         <HomeSplash language={language} />
-        <div className="mainContainer">
-          <Features />
-          <FeatureCallout />
-          <LearnHow />
-          <TryOut />
-          <Description />
-          <Showcase language={language} />
-        </div>
+        <FeatureCallout />
       </div>
     );
   }

@@ -1,8 +1,7 @@
 {
   "docs": {
-    "Getting Started": ["GettingStarted"],
-    "Main Concepts": ["LessIsMore"],
-    "Advanced Guides": ["doc3"]
+    "Getting Started": ["GettingStarted", "Functions"],
+    "Advanced Guides": ["DevelopLittleAPI"]
   },
   "Guides": {
     "First Category": ["doc4", "doc5"]

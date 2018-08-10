@@ -14,7 +14,7 @@ const users = [
     caption: 'User1',
     // You will need to prepend the image path with your baseUrl
     // if it is not '/', like: '/test-site/img/docusaurus.svg'.
-    image: '/img/docusaurus.svg',
+    image: '/img/pika.png',
     infoLink: 'https://www.facebook.com',
     pinned: true,
   },
@@ -39,17 +39,16 @@ const siteConfig = {
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     {doc: 'GettingStarted', label: 'Docs'},
-    {doc: 'doc4', label: 'Tutorials'},
-    {page: 'help', label: 'Community'},
+    {href: 'https://github.com/dfashbaugh/Little_API/issues', label: 'Community'},
     {blog: true, label: 'Blog'},
   ],
 
   // If you have users set above, you add it here:
   users,
   /* path to images for header/footer */
-  headerIcon: 'img/docusaurus.svg',
-  footerIcon: 'img/docusaurus.svg',
-  favicon: 'img/favicon.png',
+  headerIcon: 'img/pika.png',
+  footerIcon: 'img/pika.png',
+  favicon: 'img/pika.png',
 
   /* colors for website */
   colors: {
@@ -73,7 +72,7 @@ const siteConfig = {
   copyright:
     'Copyright © ' +
     new Date().getFullYear() +
-    ' Your Name or Your Company Name',
+    ' Little API',
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks
@@ -87,8 +86,8 @@ const siteConfig = {
   onPageNav: 'separate',
 
   /* Open Graph and Twitter card images */
-  ogImage: 'img/docusaurus.png',
-  twitterImage: 'img/docusaurus.png',
+  ogImage: 'img/pika.png',
+  twitterImage: 'img/pika.png',
   // usePrism: true
 
   // You may provide arbitrary config keys to be used as needed by your
