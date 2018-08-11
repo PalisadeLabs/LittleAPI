@@ -47,6 +47,7 @@ exports.CustomQuery = functions.https.onRequest((request, response) => {
 
 	}).on("error", (err) => {
 	  console.log("Error: " + err.message);
+		response.send("Error: Requires API URL");
 	});
 });
 
