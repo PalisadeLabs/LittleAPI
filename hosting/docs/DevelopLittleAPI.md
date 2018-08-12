@@ -8,7 +8,7 @@ Little API welcomes all developers to help improve the system. We are all about 
 
 ## Write Code
 
-Clone the code from the Little API Github Repo: https://github.com/dfashbaugh/Little_API
+Clone the code from the Little API Github Repo: https://github.com/LittleAPI/LittleAPI
 
 Make sure to fork the repository when you start working so that you can submit Pull Requests to the main repo.
 
